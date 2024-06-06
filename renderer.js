@@ -183,7 +183,12 @@ GameRenderer.prototype.redraw = function()
             );
         }
     }
-
+    ctx.fillStyle = `rgba(0,0,0,${game.keysDown[0]?"1":"0.3"})`;
+    ctx.fillRect(10, 70, 50, 50);
+    ctx.fillStyle = `rgba(0,0,0,${game.keysDown[1]?"1":"0.3"})`;
+    ctx.fillRect(60, 20, 50, 50);
+    ctx.fillStyle = `rgba(0,0,0,${game.keysDown[2]?"1":"0.3"})`;
+    ctx.fillRect(110, 70, 50, 50);
     function drawCanvas(canvas)
     {
         ctx.drawImage(

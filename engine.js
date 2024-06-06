@@ -32,7 +32,7 @@ window.addEventListener("load", function()
 { 
     var ge = new GameEngine; 
 
-    if(DEBUG && location.host === "localhost" && window.LevelEditor)
+    if(DEBUG && window.LevelEditor)
     {
         new LevelEditor(ge);
     }
@@ -47,6 +47,8 @@ function GameEngine()
 
     this.width = GAME_WIDTH;
     this.height = GAME_HEIGHT;
+
+    this.keysDown = [0,0,0]
 
     this.storage = new GameStorage(this.version);
 
@@ -544,7 +546,6 @@ GameEngine.prototype.doTick = function doTick(self)
         //console.log("logic skip");
         self.totalDelta = 0;
     }
-
     //var t = Date.now();
     while(self.totalDelta >= level.physics.timePerTick)
     {
@@ -634,7 +635,21 @@ GameEngine.prototype.tick = function(self)
     //     gravity is reduced (for a limited amount of time)
 
     // Note: On top of that, fall speed is capped
-
+    if(keysPressed[KEY_JUMP]) {
+        self.keysDown[1] = 1;
+    } else {
+        self.keysDown[1] = 0;
+    }
+    if(keysPressed[KEY_RIGHT]) {
+        self.keysDown[2] = 1;
+    } else {
+        self.keysDown[2] = 0;
+    }
+    if(keysPressed[KEY_LEFT]) {
+        self.keysDown[0] = 1;
+    } else {
+        self.keysDown[0] = 0;
+    }
     if(self.fallingState === NOT_FALLING)
     {
         if(keysPressed[KEY_JUMP])
