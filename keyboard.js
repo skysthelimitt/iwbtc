@@ -8,7 +8,8 @@ var KEY_UP = 38,
     KEY_RESTART = 82,
     KEY_MUTE = 77,
     KEY_SHOOT = 84,
-    KEY_SUICIDE = 81;
+    KEY_SUICIDE = 81,
+    KEY_SKIP = 220;
 
 
 var KBD_STORAGE_KEY = "keyboard_settings";
@@ -123,6 +124,7 @@ KeyboardManager.prototype.resetKeys = function()
         77: KEY_MUTE,
         84: KEY_SHOOT,
         81: KEY_SUICIDE,
+        220: KEY_SKIP,
     };
 };
 

@@ -227,6 +227,7 @@ GameEngine.prototype.loadResources = function(level)
 // Step 3: Start the game
 GameEngine.prototype.start = function()
 {
+    this.tasList = [];
     this.charBitmap = Bitmap.fromImage(this.images["charHitmap"]);
 
     this.dead = false;
@@ -650,6 +651,10 @@ GameEngine.prototype.tick = function(self)
     } else {
         self.keysDown[0] = 0;
     }
+    if(keysPressed[KEY_SKIP]) {
+        self.nextLevel("2up.js")
+    }
+    self.tasList.push([self.keysDown]);
     if(self.fallingState === NOT_FALLING)
     {
         if(keysPressed[KEY_JUMP])
